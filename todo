@@ -1,0 +1,63 @@
+Step Berikutnya
+1. Request Logger Middleware
+
+Karena sekarang belum ada visibility request.
+
+Minimal harus log:
+
+method
+URI
+status code
+latency
+IP
+
+Contoh output:
+
+POST /api/v1/orders 201 12ms
+
+Tanpa logger nanti debugging susah.
+
+2. Graceful Shutdown
+
+Sekarang service mati langsung saat CTRL+C.
+
+Production seharusnya:
+
+wait inflight request
+close app gracefully
+timeout shutdown
+3. Get Order By ID
+
+Endpoint penting:
+
+GET /api/v1/orders/:id
+
+Sekarang baru:
+
+create
+list
+4. Update Status Endpoint
+
+Ini penting buat nanti Kafka flow:
+
+PATCH /api/v1/orders/:id/status
+
+Karena nanti:
+
+payment-service publish paid event
+order-service update status
+5. Pagination
+
+Sekarang:
+
+SELECT * FROM orders
+
+Tidak scalable.
+
+Harus:
+
+limit
+page
+total count
+
+swsagger
