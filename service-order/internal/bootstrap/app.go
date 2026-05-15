@@ -11,17 +11,18 @@ import (
 	customValidator "order-service/internal/pkg/validator"
 
 	"github.com/labstack/echo/v4"
+	"gorm.io/gorm"
 )
 
-func NewApp() (*echo.Echo, *config.Config, error) {
+func NewApp() (*echo.Echo, *gorm.DB, *config.Config, error) {
 	cfg, err := config.LoadConfig()
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	db, err := database.NewPostgresConnection(cfg)
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	orderRepo := orderRepository.NewOrderRepository(db)
@@ -48,5 +49,5 @@ func NewApp() (*echo.Echo, *config.Config, error) {
 		orderHandler,
 	)
 
-	return e, cfg, nil
+	return e, db, cfg, nil
 }
