@@ -41,6 +41,8 @@ func NewApp() (*echo.Echo, *config.Config, error) {
 
 	e.HTTPErrorHandler = customMiddleware.CustomErrorHandler
 
+	e.Use(customMiddleware.RequestLogger)
+
 	orderDelivery.RegisterRoutes(
 		e,
 		orderHandler,

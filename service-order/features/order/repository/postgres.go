@@ -59,10 +59,14 @@ func (r *orderRepository) FindByID(
 
 func (r *orderRepository) FindAll(
 	ctx context.Context,
+	limit int,
+	offset int,
 ) ([]entity.Order, error) {
 	var orders []entity.Order
 
 	err := r.db.WithContext(ctx).
+		Limit(limit).
+		Offset(offset).
 		Order("created_at DESC").
 		Find(&orders).
 		Error
@@ -72,4 +76,29 @@ func (r *orderRepository) FindAll(
 	}
 
 	return orders, nil
+}
+
+func (r *orderRepository) UpdateStatus(
+	ctx context.Context,
+	id uuid.UUID,
+	status string,
+) error {
+	return r.db.WithContext(ctx).
+		Model(&entity.Order{}).
+		Where("id = ?", id).
+		Update("status", status).
+		Error
+}
+
+func (r *orderRepository) Count(
+	ctx context.Context,
+) (int64, error) {
+	var total int64
+
+	err := r.db.WithContext(ctx).
+		Model(&entity.Order{}).
+		Count(&total).
+		Error
+
+	return total, err
 }

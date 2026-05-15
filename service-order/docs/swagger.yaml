@@ -1,0 +1,204 @@
+basePath: /
+definitions:
+  dto.CreateOrderRequest:
+    properties:
+      amount:
+        example: 2500
+        type: number
+      customer_name:
+        example: reski
+        maxLength: 100
+        minLength: 3
+        type: string
+      product_name:
+        example: Macbook Pro M4
+        maxLength: 100
+        minLength: 2
+        type: string
+      quantity:
+        example: 1
+        type: integer
+    required:
+    - amount
+    - customer_name
+    - product_name
+    - quantity
+    type: object
+  dto.UpdateOrderStatusRequest:
+    properties:
+      status:
+        enum:
+        - PENDING
+        - PAID
+        - CANCELLED
+        example: PAID
+        type: string
+    required:
+    - status
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Order Service API Documentation
+  title: Order Service API
+  version: "1.0"
+paths:
+  /api/v1/orders:
+    get:
+      consumes:
+      - application/json
+      description: Get list orders with pagination
+      parameters:
+      - description: Page number
+        in: query
+        name: page
+        type: integer
+      - description: Limit data
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success get orders
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get orders
+      tags:
+      - Orders
+    post:
+      consumes:
+      - application/json
+      description: Create new order
+      parameters:
+      - description: Create Order Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreateOrderRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Success create order
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad request
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Create order
+      tags:
+      - Orders
+  /api/v1/orders/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get detail order by id
+      parameters:
+      - description: Order ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success get order
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid order id
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Data not found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get order by id
+      tags:
+      - Orders
+  /api/v1/orders/{id}/status:
+    patch:
+      consumes:
+      - application/json
+      description: Update status order
+      parameters:
+      - description: Order ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Update Order Status Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UpdateOrderStatusRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success update order status
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad request
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Data not found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Update order status
+      tags:
+      - Orders
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: Check service health
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Service healthy
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Health check
+      tags:
+      - Health
+swagger: "2.0"
