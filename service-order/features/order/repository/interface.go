@@ -29,5 +29,17 @@ type OrderRepository interface {
 
 	FindAll(
 		ctx context.Context,
+		limit int,
+		offset int,
 	) ([]entity.Order, error)
+
+	UpdateStatus(
+		ctx context.Context,
+		id uuid.UUID,
+		status string,
+	) error
+
+	Count(
+		ctx context.Context,
+	) (int64, error)
 }

@@ -1,11 +1,14 @@
 run:
-	go run ./cmd/api
+	cd service-order && go run ./cmd/api
 
 build:
-	go build -o main ./cmd/api
+	cd service-order && go build -o main ./cmd/api
+
+swagger:
+	cd service-order && swag init -g cmd/api/main.go
 
 docker-up:
-	docker compose up -d
+	cd service-order && docker compose up -d
 
 docker-down:
-	docker compose down
+	cd service-order && docker compose down
