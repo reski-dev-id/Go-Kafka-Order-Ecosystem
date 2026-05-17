@@ -67,8 +67,37 @@ func (u *orderUsecase) CreateOrder(
 		Status:       "PENDING",
 	}
 
-	payload, err := json.Marshal(order)
+	tx := u.db.Begin()
+
+	if tx.Error != nil {
+		return nil, tx.Error
+	}
+
+	err := u.orderRepo.CreateTx(
+		ctx,
+		tx,
+		&order,
+	)
+
 	if err != nil {
+		tx.Rollback()
+		return nil, err
+	}
+
+	createdOrder, err := u.orderRepo.FindByIDTx(
+		ctx,
+		tx,
+		order.ID,
+	)
+
+	if err != nil {
+		tx.Rollback()
+		return nil, err
+	}
+
+	payload, err := json.Marshal(createdOrder)
+	if err != nil {
+		tx.Rollback()
 		return nil, err
 	}
 
@@ -81,15 +110,12 @@ func (u *orderUsecase) CreateOrder(
 		Status:        "PENDING",
 	}
 
-	tx := u.db.Begin()
+	err = u.orderRepo.CreateOutboxTx(
+		ctx,
+		tx,
+		&outbox,
+	)
 
-	err = u.orderRepo.CreateTx(ctx, tx, &order)
-	if err != nil {
-		tx.Rollback()
-		return nil, err
-	}
-
-	err = u.orderRepo.CreateOutboxTx(ctx, tx, &outbox)
 	if err != nil {
 		tx.Rollback()
 		return nil, err
@@ -97,10 +123,11 @@ func (u *orderUsecase) CreateOrder(
 
 	err = tx.Commit().Error
 	if err != nil {
+		tx.Rollback()
 		return nil, err
 	}
 
-	return &order, nil
+	return createdOrder, nil
 }
 
 func (u *orderUsecase) GetOrders(
@@ -162,7 +189,7 @@ func (u *orderUsecase) UpdateOrderStatus(
 		return err
 	}
 
-	_, err = u.orderRepo.FindByID(
+	order, err := u.orderRepo.FindByID(
 		ctx,
 		orderID,
 	)
@@ -171,11 +198,68 @@ func (u *orderUsecase) UpdateOrderStatus(
 		return err
 	}
 
-	return u.orderRepo.UpdateStatus(
+	tx := u.db.Begin()
+
+	if tx.Error != nil {
+		return tx.Error
+	}
+
+	err = u.orderRepo.UpdateStatusTx(
 		ctx,
+		tx,
 		orderID,
 		req.Status,
 	)
+
+	if err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	updatedOrder, err := u.orderRepo.FindByIDTx(
+		ctx,
+		tx,
+		orderID,
+	)
+
+	if err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	payload, err := json.Marshal(updatedOrder)
+	if err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	outbox := entity.OutboxEvent{
+		ID:            uuid.New(),
+		AggregateType: "order",
+		AggregateID:   order.ID,
+		EventType:     "order.updated",
+		Payload:       datatypes.JSON(payload),
+		Status:        "PENDING",
+	}
+
+	err = u.orderRepo.CreateOutboxTx(
+		ctx,
+		tx,
+		&outbox,
+	)
+
+	if err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	err = tx.Commit().Error
+	if err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	return nil
 }
 
 func ParsePagination(

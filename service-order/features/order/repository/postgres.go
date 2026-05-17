@@ -24,6 +24,7 @@ func (r *orderRepository) CreateTx(
 	tx *gorm.DB,
 	order *entity.Order,
 ) error {
+
 	return tx.WithContext(ctx).
 		Create(order).
 		Error
@@ -34,6 +35,7 @@ func (r *orderRepository) CreateOutboxTx(
 	tx *gorm.DB,
 	outbox *entity.OutboxEvent,
 ) error {
+
 	return tx.WithContext(ctx).
 		Create(outbox).
 		Error
@@ -43,9 +45,30 @@ func (r *orderRepository) FindByID(
 	ctx context.Context,
 	id uuid.UUID,
 ) (*entity.Order, error) {
+
 	var order entity.Order
 
 	err := r.db.WithContext(ctx).
+		Where("id = ?", id).
+		First(&order).
+		Error
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &order, nil
+}
+
+func (r *orderRepository) FindByIDTx(
+	ctx context.Context,
+	tx *gorm.DB,
+	id uuid.UUID,
+) (*entity.Order, error) {
+
+	var order entity.Order
+
+	err := tx.WithContext(ctx).
 		Where("id = ?", id).
 		First(&order).
 		Error
@@ -62,6 +85,7 @@ func (r *orderRepository) FindAll(
 	limit int,
 	offset int,
 ) ([]entity.Order, error) {
+
 	var orders []entity.Order
 
 	err := r.db.WithContext(ctx).
@@ -83,7 +107,22 @@ func (r *orderRepository) UpdateStatus(
 	id uuid.UUID,
 	status string,
 ) error {
+
 	return r.db.WithContext(ctx).
+		Model(&entity.Order{}).
+		Where("id = ?", id).
+		Update("status", status).
+		Error
+}
+
+func (r *orderRepository) UpdateStatusTx(
+	ctx context.Context,
+	tx *gorm.DB,
+	id uuid.UUID,
+	status string,
+) error {
+
+	return tx.WithContext(ctx).
 		Model(&entity.Order{}).
 		Where("id = ?", id).
 		Update("status", status).
@@ -93,6 +132,7 @@ func (r *orderRepository) UpdateStatus(
 func (r *orderRepository) Count(
 	ctx context.Context,
 ) (int64, error) {
+
 	var total int64
 
 	err := r.db.WithContext(ctx).

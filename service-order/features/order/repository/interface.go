@@ -27,6 +27,12 @@ type OrderRepository interface {
 		id uuid.UUID,
 	) (*entity.Order, error)
 
+	FindByIDTx(
+		ctx context.Context,
+		tx *gorm.DB,
+		id uuid.UUID,
+	) (*entity.Order, error)
+
 	FindAll(
 		ctx context.Context,
 		limit int,
@@ -35,6 +41,13 @@ type OrderRepository interface {
 
 	UpdateStatus(
 		ctx context.Context,
+		id uuid.UUID,
+		status string,
+	) error
+
+	UpdateStatusTx(
+		ctx context.Context,
+		tx *gorm.DB,
 		id uuid.UUID,
 		status string,
 	) error
