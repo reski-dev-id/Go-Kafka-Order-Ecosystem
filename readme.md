@@ -501,6 +501,9 @@ uvicorn app.main:app --reload
 
 ---
 
+make stop-all
+make run-all
+
 # Goals
 
 This project focuses on:

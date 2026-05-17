@@ -1,4 +1,221 @@
-2026/05/17 19:16:27 relay worker started
-2026/05/17 19:18:36 event published: 59e20900-2aed-4bbc-9668-0de7d0303fef order.created
-2026/05/17 19:19:42 event published: e099e7ee-1c04-4b90-aff2-027f5b8f2ff0 order.created
-signal: killed
+2026/05/17 21:48:23 relay worker started
+
+2026/05/17 21:48:28 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[10.075ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:48:28 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:48:34 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[8.774ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:48:34 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:48:39 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[3.367ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:48:39 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:48:44 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[1.785ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:48:44 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:48:49 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[5.232ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:48:49 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:48:54 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[5.213ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:48:54 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:48:59 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[1.013ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:48:59 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:49:04 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[2.295ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:49:04 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:49:09 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[6.189ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:49:09 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:49:14 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[5.803ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:49:14 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:49:20 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[2.116ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:49:20 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:49:25 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[4.464ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:49:25 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:49:30 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[0.801ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:49:30 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:49:35 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[1.051ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:49:35 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:49:40 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[1.018ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:49:40 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:49:45 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[5.208ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:49:45 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:49:51 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[3.804ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:49:51 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:49:56 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[1.667ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:49:56 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:50:01 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[4.281ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:50:01 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:50:06 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[1.358ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:50:06 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:50:11 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[1.542ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:50:11 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:50:16 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[0.595ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:50:16 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:50:22 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[3.918ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:50:22 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:50:27 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[1.627ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:50:27 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:50:32 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[0.435ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:50:32 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:50:37 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[4.445ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:50:37 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:50:42 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[2.132ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:50:42 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:50:47 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[6.018ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:50:47 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:50:53 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[4.709ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:50:53 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:50:58 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[0.850ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:50:58 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:51:03 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[2.576ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:51:03 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:51:08 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[3.523ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:51:08 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:51:13 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[3.365ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:51:13 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:51:18 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[3.033ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:51:18 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:51:24 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[1.163ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:51:24 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:51:29 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[2.065ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:51:29 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:51:34 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[1.268ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:51:34 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:51:39 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[4.240ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:51:39 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:51:44 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[0.793ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:51:44 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:51:49 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[3.725ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:51:49 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:51:55 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[1.861ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:51:55 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:52:00 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[1.983ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:52:00 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:52:05 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[4.736ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:52:05 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:52:10 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[0.557ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:52:10 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:52:15 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[0.960ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:52:15 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:52:20 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[2.667ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:52:20 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:52:26 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[4.270ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:52:26 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:52:31 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[5.213ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:52:31 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:52:36 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[3.037ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:52:36 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:52:41 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[4.244ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:52:41 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:52:46 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[0.791ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:52:46 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:52:51 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[2.449ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:52:51 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:52:56 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[1.285ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:52:56 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:53:01 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[1.178ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:53:01 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+
+2026/05/17 21:53:06 [31;1m/home/reski/working/project/order-service/relay-worker/internal/worker/relay_worker.go:70 [35;1mERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
+[0m[33m[4.544ms] [34;1m[rows:0][0m SELECT * FROM "outbox_events" WHERE status = 'PENDING' ORDER BY created_at ASC LIMIT 10
+2026/05/17 21:53:06 ERROR: relation "outbox_events" does not exist (SQLSTATE 42P01)
