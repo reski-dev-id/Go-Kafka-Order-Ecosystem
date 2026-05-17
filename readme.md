@@ -1,20 +1,69 @@
 # Go Kafka Order Ecosystem
 
-Production-style distributed system implementing **Event-Driven Architecture** with the **Transactional Outbox Pattern** to guarantee consistency between PostgreSQL transactions and Kafka event publishing.
+Production-style distributed backend ecosystem implementing Event-Driven Architecture using the Transactional Outbox Pattern for reliable asynchronous communication between services.
 
-This project demonstrates:
+This project focuses on:
 
 - Microservice architecture
+- Event-driven systems
 - Polyglot services
 - Clean Architecture
-- Feature-based structure
-- Dependency Injection
-- Kafka event streaming
-- Distributed tracing
-- Metrics & observability
+- Distributed messaging with Kafka
+- Transactional consistency
+- Async processing
 - Dockerized infrastructure
-- CI/CD with GitHub Actions
+- Production-oriented backend engineering
+
+---
+
+# Current Project Status
+
+## Implemented
+
+- Dockerized infrastructure
+- PostgreSQL 16
+- Apache Kafka
+- Zookeeper
+- Kafka UI
+- Kafka topic auto bootstrap
+- Multi-database bootstrap
+- Order CRUD API
+- Clean Architecture
+- Feature-based structure
+- DTO validation
+- Centralized validation middleware
+- Standardized API response
+- Transactional Outbox Pattern
+- PostgreSQL outbox persistence
+
+---
+
+## In Progress
+
+- Relay worker
+- Kafka publisher abstraction
+- Payment service Kafka consumer
+- Notification service Kafka consumer
+- Retry mechanism
+- Idempotent consumer handling
+
+---
+
+## Planned
+
+- OpenTelemetry tracing
+- Prometheus metrics
+- Grafana dashboards
+- Loki logging
+- Tempo tracing
+- Dead Letter Queue (DLQ)
+- Kafka retry topics
+- GitHub Actions CI/CD
 - DockerHub deployment
+- Flyway migration management
+- Google Wire dependency injection
+- Distributed tracing propagation
+- Structured logging
 
 ---
 
@@ -23,9 +72,10 @@ This project demonstrates:
 ```text
 Client
   ↓
-Order Service (Go + Gin)
+Order Service (Go)
   ↓
-PostgreSQL (orders + outbox)
+PostgreSQL
+(orders + outbox)
   ↓
 Relay Worker (Go)
   ↓
@@ -44,66 +94,58 @@ Notification Service (FastAPI)
 
 | Layer | Technology |
 |---|---|
-| Order Service | Go 1.22 + Gin |
-| Relay Worker | Go 1.22 |
-| Payment Service | Java Spring Boot |
+| Order Service | Go 1.22 |
+| HTTP Framework | Echo |
+| Relay Worker | Go |
+| Payment Service | Spring Boot |
 | Notification Service | FastAPI |
-| Database | PostgreSQL |
+| Database | PostgreSQL 16 |
 | SQL Library | sqlx |
 | Message Broker | Apache Kafka |
-| Metrics | Prometheus |
-| Dashboard | Grafana |
-| Logs | Loki |
-| Tracing | OpenTelemetry + Tempo |
-| Dependency Injection | Google Wire |
+| Kafka UI | Provectus Kafka UI |
 | Containerization | Docker + Docker Compose |
-| CI/CD | GitHub Actions |
-| Image Registry | DockerHub |
+| Architecture | Clean Architecture |
+| Dependency Injection | Manual DI (planned Wire) |
 
 ---
 
-# Core Architecture Principles
-
-## Microservice Architecture
-
-Each service has a single responsibility:
+# Microservices
 
 | Service | Responsibility |
 |---|---|
-| order-service | Create orders + transactional outbox |
+| order-service | Create orders + store outbox events |
 | relay-worker | Publish outbox events to Kafka |
-| payment-service | Consume order events and process payment |
-| notification-service | Send notifications from Kafka events |
+| payment-service | Consume order events + process payment |
+| notification-service | Consume payment events + send notifications |
 
 ---
 
-## Clean Architecture
+# Clean Architecture
 
-Every service follows Clean Architecture:
+Each service follows Clean Architecture principles.
 
 ```text
-┌─────────────────────────────────────────────┐
-│               Delivery Layer                │
-├─────────────────────────────────────────────┤
-│               Usecase Layer                 │
-├─────────────────────────────────────────────┤
-│              Repository Layer               │
-├─────────────────────────────────────────────┤
-│               Domain Layer                  │
-└─────────────────────────────────────────────┘
+┌────────────────────────────┐
+│       Delivery Layer       │
+├────────────────────────────┤
+│       Usecase Layer        │
+├────────────────────────────┤
+│      Repository Layer      │
+├────────────────────────────┤
+│        Domain Layer        │
+└────────────────────────────┘
 ```
 
 Rules:
 
-- Domain layer must remain framework-independent
-- Usecase layer must not depend on HTTP
-- Repository interfaces belong to the feature layer
-- Infrastructure only implements contracts
-- All dependencies are injected
+- Domain layer remains framework-independent
+- Usecase layer contains business logic
+- Infrastructure implements interfaces
+- Dependencies flow inward only
 
 ---
 
-## Feature-Based Structure
+# Feature-Based Structure
 
 ```text
 features/
@@ -117,11 +159,10 @@ features/
 
 Advantages:
 
-- Better scalability
-- Better ownership boundaries
-- Easier maintenance
+- Better modularity
+- Easier scalability
 - Reduced coupling
-- Cleaner modularity
+- Clear ownership boundaries
 
 ---
 
@@ -135,7 +176,6 @@ go-kafka-order-ecosystem/
 │
 ├── shared/
 │   ├── logger/
-│   ├── telemetry/
 │   ├── postgres/
 │   ├── kafka/
 │   ├── middleware/
@@ -144,7 +184,8 @@ go-kafka-order-ecosystem/
 │
 ├── order-service/
 │   ├── cmd/
-│   └── internal/
+│   ├── internal/
+│   └── migrations/
 │
 ├── relay-worker/
 │
@@ -152,35 +193,50 @@ go-kafka-order-ecosystem/
 │
 ├── notification-service/
 │
+├── postgres-init/
+│
 ├── infra/
-│   ├── docker-compose.yml
-│   ├── prometheus/
-│   ├── grafana/
-│   ├── loki/
-│   ├── tempo/
-│   └── postgres-init/
 │
 ├── .github/
-│   └── workflows/
 │
 └── README.md
 ```
 
 ---
 
-# Dependency Injection
+# Infrastructure Stack
 
-Dependency Injection uses:
+Current infrastructure:
 
-- Google Wire
+- PostgreSQL 16
+- Apache Kafka
+- Zookeeper
+- Kafka UI
+- Docker Compose
 
-Benefits:
+---
 
-- Compile-time dependency graph
-- Type-safe DI
-- Better testing
-- Cleaner initialization
-- Explicit dependencies
+# Kafka Topics
+
+```text
+order.created
+payment.completed
+notification.send
+```
+
+Topics are automatically bootstrapped during container startup.
+
+---
+
+# PostgreSQL Databases
+
+The infrastructure automatically creates:
+
+```text
+order_db
+payment_db
+notification_db
+```
 
 ---
 
@@ -190,69 +246,91 @@ Benefits:
 
 ```sql
 CREATE TABLE orders (
-  id UUID PRIMARY KEY,
-  item_name VARCHAR(255),
-  amount DECIMAL,
-  status VARCHAR(50),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    customer_name VARCHAR(255) NOT NULL,
+    product_name VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL,
+    amount DECIMAL(12,2) NOT NULL,
+    status VARCHAR(50) NOT NULL DEFAULT 'PENDING',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
 
 ---
 
-## Outbox Table
+## Outbox Events Table
 
 ```sql
-CREATE TABLE outbox (
-  id BIGSERIAL PRIMARY KEY,
-  aggregate_id UUID NOT NULL,
-  event_key VARCHAR(255),
-  topic VARCHAR(100) NOT NULL,
-  payload JSONB NOT NULL,
-
-  processed BOOLEAN DEFAULT FALSE,
-
-  retry_count INT DEFAULT 0,
-  next_retry_at TIMESTAMP NULL,
-
-  last_error TEXT,
-
-  processed_at TIMESTAMP NULL,
-
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE outbox_events (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    aggregate_id UUID NOT NULL,
+    aggregate_type VARCHAR(100) NOT NULL,
+    event_type VARCHAR(100) NOT NULL,
+    payload JSONB NOT NULL,
+    status VARCHAR(50) NOT NULL DEFAULT 'PENDING',
+    retry_count INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    processed_at TIMESTAMP
 );
 ```
 
 ---
 
-## Processed Events Table
+# Transactional Outbox Pattern
 
-Used for idempotent Kafka consumers.
+The system uses the Transactional Outbox Pattern to guarantee consistency between PostgreSQL transactions and Kafka event publishing.
 
-```sql
-CREATE TABLE processed_events (
-  event_id VARCHAR(255) PRIMARY KEY,
-  processed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
-
----
-
-# Kafka Topics
+Flow:
 
 ```text
-order.created
-payment.completed
-payment.failed
-notification.send
-order.dlq
+HTTP Request
+  ↓
+Create Order
+  ↓
+Insert Outbox Event
+  ↓
+Commit Transaction
+  ↓
+Relay Worker Polling
+  ↓
+Kafka Publish
+```
+
+Benefits:
+
+- Prevents dual-write problems
+- Guarantees event persistence
+- Reliable asynchronous messaging
+- Better fault tolerance
+
+---
+
+# Relay Worker Flow
+
+The relay worker will:
+
+- poll unprocessed outbox events
+- publish events to Kafka
+- mark events as processed
+- retry failed events
+
+Polling query:
+
+```sql
+SELECT *
+FROM outbox_events
+WHERE status = 'PENDING'
+ORDER BY created_at
+LIMIT 10
+FOR UPDATE SKIP LOCKED;
 ```
 
 ---
 
 # Event Contract
 
-All services communicate through a shared event schema.
+Example event payload:
 
 ```json
 {
@@ -262,205 +340,48 @@ All services communicate through a shared event schema.
   "occurred_at": "timestamp",
   "payload": {
     "order_id": "uuid",
-    "amount": 100
+    "customer_name": "reski",
+    "amount": 2500
   }
 }
 ```
 
 ---
 
-# Transactional Outbox Flow
+# Docker Compose Infrastructure
 
-## Step 1 — Order Creation
-
-The order-service:
-
-- inserts order data
-- inserts outbox event
-- commits in a single PostgreSQL transaction
-
----
-
-## Step 2 — Relay Worker
-
-The relay-worker:
-
-- polls unprocessed outbox rows
-- publishes events to Kafka
-- marks rows as processed
-- retries failed events
-
----
-
-## Step 3 — Payment Service
-
-The payment-service:
-
-- consumes Kafka events
-- validates idempotency
-- processes payment
-- publishes payment result events
-
----
-
-## Step 4 — Notification Service
-
-The notification-service:
-
-- consumes payment events
-- sends notifications
-
----
-
-# Reliable Outbox Query
-
-Relay worker uses:
-
-```sql
-SELECT *
-FROM outbox
-WHERE processed = false
-ORDER BY created_at
-LIMIT 10
-FOR UPDATE SKIP LOCKED;
-```
-
-This prevents:
-
-- duplicate processing
-- worker race conditions
-- row contention
-
----
-
-# Observability Stack
-
-| Concern | Tool |
-|---|---|
-| Metrics | Prometheus |
-| Dashboard | Grafana |
-| Logs | Loki |
-| Traces | Tempo |
-| Instrumentation | OpenTelemetry |
-
----
-
-# Prometheus Metrics
-
-```text
-outbox_processed_total
-outbox_failed_total
-outbox_retry_total
-outbox_queue_size
-```
-
----
-
-# Grafana Alert Rules
-
-```promql
-rate(outbox_failed_total[1m]) > 5
-outbox_queue_size > 100
-rate(outbox_processed_total[5m]) == 0
-rate(outbox_retry_total[1m]) > 10
-```
-
----
-
-# Distributed Tracing Flow
-
-```text
-HTTP → PostgreSQL → Kafka → Consumer
-```
-
-OpenTelemetry tracing is propagated across all services.
-
----
-
-# Infrastructure Stack
-
-Docker Compose includes:
+Services included:
 
 - PostgreSQL
-- Kafka (KRaft mode)
+- Kafka
+- Zookeeper
 - Kafka UI
-- Prometheus
-- Grafana
-- Loki
-- Tempo
+- Kafka topic bootstrap
 
 ---
 
-# Docker Compose
-
-```yaml
-version: '3.9'
-
-services:
-  postgres:
-    image: postgres:15
-    ports:
-      - "5432:5432"
-
-  kafka:
-    image: bitnami/kafka:latest
-    ports:
-      - "9092:9092"
-
-  kafka-ui:
-    image: provectuslabs/kafka-ui
-    ports:
-      - "8080:8080"
-
-  prometheus:
-    image: prom/prometheus
-    ports:
-      - "9090:9090"
-
-  grafana:
-    image: grafana/grafana
-    ports:
-      - "3000:3000"
-
-  loki:
-    image: grafana/loki
-    ports:
-      - "3100:3100"
-
-  tempo:
-    image: grafana/tempo
-    ports:
-      - "3200:3200"
-```
-
----
-
-# CI/CD Pipeline
-
-GitHub Actions pipeline:
-
-- lint
-- test
-- build
-- docker build
-- docker push
-- multi-service deployment pipeline
-
-DockerHub images are built automatically for:
-
-- order-service
-- relay-worker
-- payment-service
-- notification-service
-
----
-
-# Setup
+# Make Commands
 
 ## Start Infrastructure
 
 ```bash
-docker compose up -d
+make infra-up
+```
+
+---
+
+## Stop Infrastructure
+
+```bash
+make infra-down
+```
+
+---
+
+## Reset Infrastructure
+
+```bash
+make infra-reset
 ```
 
 ---
@@ -468,8 +389,7 @@ docker compose up -d
 ## Run Order Service
 
 ```bash
-cd order-service
-go run cmd/api/main.go
+make run-order
 ```
 
 ---
@@ -477,8 +397,7 @@ go run cmd/api/main.go
 ## Run Relay Worker
 
 ```bash
-cd relay-worker
-go run cmd/main.go
+make run-relay
 ```
 
 ---
@@ -486,8 +405,7 @@ go run cmd/main.go
 ## Run Payment Service
 
 ```bash
-cd payment-service
-./mvnw spring-boot:run
+make run-payment
 ```
 
 ---
@@ -495,61 +413,106 @@ cd payment-service
 ## Run Notification Service
 
 ```bash
-cd notification-service
-uvicorn app.main:app --reload
+make run-notification
 ```
 
 ---
 
-# Goals
+## Run All Services
 
-This project focuses on:
-
-- Reliability
-- Scalability
-- Observability
-- Distributed systems
-- Event-driven architecture
-- Production-grade engineering
-- Polyglot microservices
-- Async processing
-- Fault tolerance
-- Transactional consistency
+```bash
+make run-all
+```
 
 ---
 
-# Production Features
+## Stop All Services
 
-Planned production-grade capabilities:
+```bash
+make stop-all
+```
 
-- Exponential retry backoff
+---
+
+# Manual Commands
+
+## Run Infrastructure
+
+```bash
+docker compose up -d
+```
+
+---
+
+## Stop Infrastructure
+
+```bash
+docker compose down
+```
+
+---
+
+## Reset Infrastructure
+
+```bash
+docker compose down -v
+```
+
+---
+
+# Kafka UI
+
+Available at:
+
+```text
+http://localhost:8080
+```
+
+---
+
+# Current Engineering Focus
+
+This project currently emphasizes:
+
+- Reliable event publishing
+- Async processing
+- Transaction consistency
+- Modular architecture
+- Distributed backend communication
+- Production-style infrastructure
+- Polyglot microservices
+
+---
+
+# Planned Production Features
+
+Future production-grade capabilities:
+
 - Dead Letter Queue
+- Retry topics
+- Exponential retry backoff
 - Distributed tracing
-- Structured logging
 - Metrics aggregation
-- Kafka retry topics
-- DockerHub deployment
-- GitHub Actions CI/CD
+- Structured logging
+- Correlation IDs
+- OpenTelemetry instrumentation
 - Health checks
 - Graceful shutdown
-- Correlation IDs
-- Idempotent consumers
-- OpenTelemetry instrumentation
+- CI/CD automation
+- DockerHub deployment
+- Observability stack
 
 ---
 
-# Final Result
+# Final Goal
 
 A production-style distributed backend ecosystem demonstrating:
 
-- Clean Architecture
-- Feature-based modularity
 - Event-driven microservices
-- Polyglot service communication
-- Kafka streaming
-- Observability stack
 - Transactional Outbox Pattern
-- CI/CD automation
-- Containerized deployment
-- Production engineering practices
-
+- Clean Architecture
+- Kafka streaming
+- Polyglot services
+- Distributed systems engineering
+- Containerized infrastructure
+- Production-oriented backend practices
