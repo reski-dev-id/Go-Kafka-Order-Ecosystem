@@ -22,7 +22,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"customer_name\": \"reski\",\n    \"product_name\": \"iphone 16\",\n    \"quantity\": 2,\n    \"amount\": 4000\n}",
+              "raw": "{\n  \"customer_name\": \"reski\",\n  \"product_name\": \"Macbook Pro M4\",\n  \"quantity\": 1,\n  \"amount\": 2500\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -30,12 +30,12 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/orders",
+              "raw": "http://localhost:8081/api/v1/orders",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8080",
+              "port": "8081",
               "path": [
                 "api",
                 "v1",
@@ -51,12 +51,12 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/health",
+              "raw": "http://localhost:8081/health",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8080",
+              "port": "8081",
               "path": [
                 "health"
               ]
@@ -70,12 +70,12 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/api/v1/orders?page=1&limit=100",
+              "raw": "http://localhost:8081/api/v1/orders?page=1&limit=100",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8080",
+              "port": "8081",
               "path": [
                 "api",
                 "v1",
@@ -101,17 +101,17 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/api/v1/orders/68fe38c8-dafc-4036-afa1-c8e99868bb24",
+              "raw": "http://localhost:8081/api/v1/orders/92f77446-a20c-431d-b0fe-9c1d0293fb14",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8080",
+              "port": "8081",
               "path": [
                 "api",
                 "v1",
                 "orders",
-                "68fe38c8-dafc-4036-afa1-c8e99868bb24"
+                "92f77446-a20c-431d-b0fe-9c1d0293fb14"
               ]
             }
           },
@@ -137,17 +137,17 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/orders/ef25b37a-a7cc-4a0f-b8b6-a87328ed533f/status",
+              "raw": "http://localhost:8081/api/v1/orders/92f77446-a20c-431d-b0fe-9c1d0293fb14/status",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "8080",
+              "port": "8081",
               "path": [
                 "api",
                 "v1",
                 "orders",
-                "ef25b37a-a7cc-4a0f-b8b6-a87328ed533f",
+                "92f77446-a20c-431d-b0fe-9c1d0293fb14",
                 "status"
               ]
             }
