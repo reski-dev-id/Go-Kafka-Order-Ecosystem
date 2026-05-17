@@ -36,23 +36,23 @@
 
  :: Spring Boot ::               (v3.5.14)
 
-2026-05-17T17:10:16.900+07:00  INFO 27391 --- [payment-service] [           main] c.r.payment.PaymentServiceApplication    : Starting PaymentServiceApplication using Java 21.0.10 with PID 27391 (/home/reski/working/project/order-service/payment-service/target/classes started by reski in /home/reski/working/project/order-service/payment-service)
-2026-05-17T17:10:16.903+07:00  INFO 27391 --- [payment-service] [           main] c.r.payment.PaymentServiceApplication    : No active profile set, falling back to 1 default profile: "default"
-2026-05-17T17:10:17.491+07:00  INFO 27391 --- [payment-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-05-17T17:10:17.528+07:00  INFO 27391 --- [payment-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 32 ms. Found 1 JPA repository interface.
-2026-05-17T17:10:17.892+07:00  INFO 27391 --- [payment-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
-2026-05-17T17:10:17.905+07:00  INFO 27391 --- [payment-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-05-17T17:10:17.906+07:00  INFO 27391 --- [payment-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.54]
-2026-05-17T17:10:17.953+07:00  INFO 27391 --- [payment-service] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-05-17T17:10:17.954+07:00  INFO 27391 --- [payment-service] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 994 ms
-2026-05-17T17:10:18.095+07:00  INFO 27391 --- [payment-service] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-05-17T17:10:18.129+07:00  INFO 27391 --- [payment-service] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.49.Final
-2026-05-17T17:10:18.150+07:00  INFO 27391 --- [payment-service] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-05-17T17:10:18.400+07:00  INFO 27391 --- [payment-service] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-05-17T17:10:18.420+07:00  INFO 27391 --- [payment-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-05-17T17:10:18.572+07:00  INFO 27391 --- [payment-service] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1669931a
-2026-05-17T17:10:18.573+07:00  INFO 27391 --- [payment-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-05-17T17:10:18.625+07:00  INFO 27391 --- [payment-service] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2026-05-17T17:39:16.665+07:00  INFO 34169 --- [payment-service] [           main] c.r.payment.PaymentServiceApplication    : Starting PaymentServiceApplication using Java 21.0.10 with PID 34169 (/home/reski/working/project/order-service/payment-service/target/classes started by reski in /home/reski/working/project/order-service/payment-service)
+2026-05-17T17:39:16.667+07:00  INFO 34169 --- [payment-service] [           main] c.r.payment.PaymentServiceApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-05-17T17:39:17.233+07:00  INFO 34169 --- [payment-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-17T17:39:17.277+07:00  INFO 34169 --- [payment-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 36 ms. Found 1 JPA repository interface.
+2026-05-17T17:39:17.629+07:00  INFO 34169 --- [payment-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2026-05-17T17:39:17.640+07:00  INFO 34169 --- [payment-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-17T17:39:17.640+07:00  INFO 34169 --- [payment-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-05-17T17:39:17.680+07:00  INFO 34169 --- [payment-service] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-17T17:39:17.681+07:00  INFO 34169 --- [payment-service] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 977 ms
+2026-05-17T17:39:17.804+07:00  INFO 34169 --- [payment-service] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-17T17:39:17.839+07:00  INFO 34169 --- [payment-service] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.49.Final
+2026-05-17T17:39:17.859+07:00  INFO 34169 --- [payment-service] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-05-17T17:39:18.104+07:00  INFO 34169 --- [payment-service] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-17T17:39:18.124+07:00  INFO 34169 --- [payment-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-17T17:39:18.236+07:00  INFO 34169 --- [payment-service] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2d24cdd9
+2026-05-17T17:39:18.237+07:00  INFO 34169 --- [payment-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-17T17:39:18.290+07:00  INFO 34169 --- [payment-service] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 16.14
@@ -60,11 +60,11 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-05-17T17:10:19.286+07:00  INFO 27391 --- [payment-service] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-05-17T17:10:19.330+07:00  INFO 27391 --- [payment-service] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-05-17T17:10:19.603+07:00  WARN 27391 --- [payment-service] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-05-17T17:10:20.030+07:00  INFO 27391 --- [payment-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/'
-2026-05-17T17:10:20.065+07:00  INFO 27391 --- [payment-service] [           main] o.a.k.clients.consumer.ConsumerConfig    : ConsumerConfig values: 
+2026-05-17T17:39:18.904+07:00  INFO 34169 --- [payment-service] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-17T17:39:18.940+07:00  INFO 34169 --- [payment-service] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-17T17:39:19.187+07:00  WARN 34169 --- [payment-service] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-17T17:39:19.507+07:00  INFO 34169 --- [payment-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/'
+2026-05-17T17:39:19.536+07:00  INFO 34169 --- [payment-service] [           main] o.a.k.clients.consumer.ConsumerConfig    : ConsumerConfig values: 
 	allow.auto.create.topics = true
 	auto.commit.interval.ms = 5000
 	auto.include.jmx.reporter = true
@@ -164,30 +164,128 @@
 	ssl.truststore.type = JKS
 	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
 
-2026-05-17T17:10:20.103+07:00  INFO 27391 --- [payment-service] [           main] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
-2026-05-17T17:10:20.217+07:00  INFO 27391 --- [payment-service] [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.9.2
-2026-05-17T17:10:20.217+07:00  INFO 27391 --- [payment-service] [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: 5e9866f43ab8e7e4
-2026-05-17T17:10:20.217+07:00  INFO 27391 --- [payment-service] [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1779012620216
-2026-05-17T17:10:20.221+07:00  INFO 27391 --- [payment-service] [           main] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] Subscribed to topic(s): order.created
-2026-05-17T17:10:20.237+07:00  INFO 27391 --- [payment-service] [           main] c.r.payment.PaymentServiceApplication    : Started PaymentServiceApplication in 3.72 seconds (process running for 3.952)
-2026-05-17T17:10:20.536+07:00  INFO 27391 --- [payment-service] [ntainer#0-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] Cluster ID: c-e-DwJQRke9KkW7Mu5Pyw
-2026-05-17T17:10:20.536+07:00  INFO 27391 --- [payment-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] Discovered group coordinator localhost:9094 (id: 2147483646 rack: null)
-2026-05-17T17:10:20.539+07:00  INFO 27391 --- [payment-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] (Re-)joining group
-2026-05-17T17:10:20.550+07:00  INFO 27391 --- [payment-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] Request joining group due to: need to re-join with the given member-id: consumer-payment-group-1-cf82d6e6-8557-4830-a3ea-62e3a56af769
-2026-05-17T17:10:20.551+07:00  INFO 27391 --- [payment-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] (Re-)joining group
-2026-05-17T17:10:23.560+07:00  INFO 27391 --- [payment-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] Successfully joined group with generation Generation{generationId=5, memberId='consumer-payment-group-1-cf82d6e6-8557-4830-a3ea-62e3a56af769', protocol='range'}
-2026-05-17T17:10:23.573+07:00  INFO 27391 --- [payment-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] Finished assignment for group at generation 5: {consumer-payment-group-1-cf82d6e6-8557-4830-a3ea-62e3a56af769=Assignment(partitions=[order.created-0])}
-2026-05-17T17:10:23.584+07:00  INFO 27391 --- [payment-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] Successfully synced group in generation Generation{generationId=5, memberId='consumer-payment-group-1-cf82d6e6-8557-4830-a3ea-62e3a56af769', protocol='range'}
-2026-05-17T17:10:23.585+07:00  INFO 27391 --- [payment-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] Notifying assignor about the new Assignment(partitions=[order.created-0])
-2026-05-17T17:10:23.587+07:00  INFO 27391 --- [payment-service] [ntainer#0-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] Adding newly assigned partitions: order.created-0
-2026-05-17T17:10:23.593+07:00  INFO 27391 --- [payment-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition order.created-0 to the committed offset FetchPosition{offset=2, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9094 (id: 1 rack: null)], epoch=0}}
-2026-05-17T17:10:23.594+07:00  INFO 27391 --- [payment-service] [ntainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : payment-group: partitions assigned: [order.created-0]
+2026-05-17T17:39:19.574+07:00  INFO 34169 --- [payment-service] [           main] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-05-17T17:39:19.708+07:00  INFO 34169 --- [payment-service] [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.9.2
+2026-05-17T17:39:19.708+07:00  INFO 34169 --- [payment-service] [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: 5e9866f43ab8e7e4
+2026-05-17T17:39:19.708+07:00  INFO 34169 --- [payment-service] [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1779014359706
+2026-05-17T17:39:19.710+07:00  INFO 34169 --- [payment-service] [           main] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] Subscribed to topic(s): order.created
+2026-05-17T17:39:19.728+07:00  INFO 34169 --- [payment-service] [           main] c.r.payment.PaymentServiceApplication    : Started PaymentServiceApplication in 3.474 seconds (process running for 3.712)
+2026-05-17T17:39:20.048+07:00  INFO 34169 --- [payment-service] [ntainer#0-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] Cluster ID: c-e-DwJQRke9KkW7Mu5Pyw
+2026-05-17T17:39:20.053+07:00  INFO 34169 --- [payment-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] Discovered group coordinator localhost:9094 (id: 2147483646 rack: null)
+2026-05-17T17:39:20.056+07:00  INFO 34169 --- [payment-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] (Re-)joining group
+2026-05-17T17:39:20.073+07:00  INFO 34169 --- [payment-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] Request joining group due to: need to re-join with the given member-id: consumer-payment-group-1-41e6885d-d473-457e-b98c-858c84ec1868
+2026-05-17T17:39:20.074+07:00  INFO 34169 --- [payment-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] (Re-)joining group
+2026-05-17T17:39:23.090+07:00  INFO 34169 --- [payment-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] Successfully joined group with generation Generation{generationId=7, memberId='consumer-payment-group-1-41e6885d-d473-457e-b98c-858c84ec1868', protocol='range'}
+2026-05-17T17:39:23.108+07:00  INFO 34169 --- [payment-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] Finished assignment for group at generation 7: {consumer-payment-group-1-41e6885d-d473-457e-b98c-858c84ec1868=Assignment(partitions=[order.created-0])}
+2026-05-17T17:39:23.123+07:00  INFO 34169 --- [payment-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] Successfully synced group in generation Generation{generationId=7, memberId='consumer-payment-group-1-41e6885d-d473-457e-b98c-858c84ec1868', protocol='range'}
+2026-05-17T17:39:23.124+07:00  INFO 34169 --- [payment-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] Notifying assignor about the new Assignment(partitions=[order.created-0])
+2026-05-17T17:39:23.126+07:00  INFO 34169 --- [payment-service] [ntainer#0-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-payment-group-1, groupId=payment-group] Adding newly assigned partitions: order.created-0
+2026-05-17T17:39:23.132+07:00  INFO 34169 --- [payment-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition order.created-0 to the committed offset FetchPosition{offset=7, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9094 (id: 1 rack: null)], epoch=0}}
+2026-05-17T17:39:23.134+07:00  INFO 34169 --- [payment-service] [ntainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : payment-group: partitions assigned: [order.created-0]
 Hibernate: select p1_0.id,p1_0.amount,p1_0.created_at,p1_0.order_id,p1_0.status from payments p1_0 where p1_0.id=?
 Hibernate: insert into payments (amount,created_at,order_id,status,id) values (?,?,?,?,?)
-payment created for order: aa73864b-277e-4312-99fd-0417b1569265
-Hibernate: select p1_0.id,p1_0.amount,p1_0.created_at,p1_0.order_id,p1_0.status from payments p1_0 where p1_0.id=?
-Hibernate: insert into payments (amount,created_at,order_id,status,id) values (?,?,?,?,?)
-payment created for order: 98fdb598-052d-42c8-9751-58e874b06dcd
-Hibernate: select p1_0.id,p1_0.amount,p1_0.created_at,p1_0.order_id,p1_0.status from payments p1_0 where p1_0.id=?
-Hibernate: insert into payments (amount,created_at,order_id,status,id) values (?,?,?,?,?)
-payment created for order: e8aab187-7d75-4cd7-bd66-3a1130e97e50
+2026-05-17T17:39:43.503+07:00  INFO 34169 --- [payment-service] [ntainer#0-0-C-1] o.a.k.clients.producer.ProducerConfig    : ProducerConfig values: 
+	acks = -1
+	auto.include.jmx.reporter = true
+	batch.size = 16384
+	bootstrap.servers = [localhost:9094]
+	buffer.memory = 33554432
+	client.dns.lookup = use_all_dns_ips
+	client.id = payment-service-producer-1
+	compression.gzip.level = -1
+	compression.lz4.level = 9
+	compression.type = none
+	compression.zstd.level = 3
+	connections.max.idle.ms = 540000
+	delivery.timeout.ms = 120000
+	enable.idempotence = true
+	enable.metrics.push = true
+	interceptor.classes = []
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	linger.ms = 0
+	max.block.ms = 60000
+	max.in.flight.requests.per.connection = 5
+	max.request.size = 1048576
+	metadata.max.age.ms = 300000
+	metadata.max.idle.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partitioner.adaptive.partitioning.enable = true
+	partitioner.availability.timeout.ms = 0
+	partitioner.class = null
+	partitioner.ignore.keys = false
+	receive.buffer.bytes = 32768
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.header.urlencode = false
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	transaction.timeout.ms = 60000
+	transactional.id = null
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+
+2026-05-17T17:39:43.503+07:00  INFO 34169 --- [payment-service] [ntainer#0-0-C-1] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-05-17T17:39:43.518+07:00  INFO 34169 --- [payment-service] [ntainer#0-0-C-1] o.a.k.clients.producer.KafkaProducer     : [Producer clientId=payment-service-producer-1] Instantiated an idempotent producer.
+2026-05-17T17:39:43.545+07:00  INFO 34169 --- [payment-service] [ntainer#0-0-C-1] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.9.2
+2026-05-17T17:39:43.545+07:00  INFO 34169 --- [payment-service] [ntainer#0-0-C-1] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: 5e9866f43ab8e7e4
+2026-05-17T17:39:43.545+07:00  INFO 34169 --- [payment-service] [ntainer#0-0-C-1] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1779014383545
+2026-05-17T17:39:43.556+07:00  INFO 34169 --- [payment-service] [vice-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=payment-service-producer-1] Cluster ID: c-e-DwJQRke9KkW7Mu5Pyw
+payment completed published for order: 3cf530ee-bb35-4c28-9ecf-c56842070239
+2026-05-17T17:39:43.697+07:00  INFO 34169 --- [payment-service] [vice-producer-1] o.a.k.c.p.internals.TransactionManager   : [Producer clientId=payment-service-producer-1] ProducerId set to 0 with epoch 0

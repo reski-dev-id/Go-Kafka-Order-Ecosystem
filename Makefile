@@ -23,9 +23,8 @@ logs:
 	tail -f order-service.log relay-worker.log payment-service.log
 
 stop-all:
-	pkill -f "go run ./cmd/api" || true
-	pkill -f "go run ./cmd/worker/main.go" || true
-	pkill -f "spring-boot:run" || true
+	-pkill -9 -f "/home/reski/.cache/go-build"
+	-pkill -9 -f "PaymentServiceApplication"
 
 build:
 	cd service-order && go build -o main ./cmd/api
