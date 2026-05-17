@@ -142,3 +142,16 @@ func (r *orderRepository) Count(
 
 	return total, err
 }
+
+func (r *orderRepository) UpdateStatusByID(
+	ctx context.Context,
+	id uuid.UUID,
+	status string,
+) error {
+
+	return r.db.WithContext(ctx).
+		Model(&entity.Order{}).
+		Where("id = ?", id).
+		Update("status", status).
+		Error
+}

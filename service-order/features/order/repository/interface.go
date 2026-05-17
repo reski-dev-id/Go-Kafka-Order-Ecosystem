@@ -55,4 +55,10 @@ type OrderRepository interface {
 	Count(
 		ctx context.Context,
 	) (int64, error)
+
+	UpdateStatusByID(
+		ctx context.Context,
+		id uuid.UUID,
+		status string,
+	) error
 }
