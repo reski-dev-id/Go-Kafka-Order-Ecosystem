@@ -1,0 +1,23 @@
+Jalankan Migration Orders
+
+Dari root project:
+
+docker exec -i order-postgres psql -U postgres -d order_db < service-order/migrations/000001_create_orders_table.up.sql
+Jalankan Migration Outbox
+docker exec -i order-postgres psql -U postgres -d order_db < service-order/migrations/000002_create_outbox_table.up.sql
+Optional Seed
+docker exec -i order-postgres psql -U postgres -d order_db < service-order/migrations/000003_seed_orders.up.sql
+Verify Lagi
+
+Masuk:
+
+docker exec -it order-postgres psql -U postgres -d order_db
+Check Table
+\dt
+
+Harus muncul:
+
+orders
+outbox_events
+Setelah Itu Test Lagi
+make run
