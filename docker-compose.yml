@@ -102,7 +102,11 @@ services:
       - -c
       - |
         kafka-topics --if-not-exists --bootstrap-server kafka:9092 --create --topic order.created --partitions 1 --replication-factor 1
+
+        kafka-topics --if-not-exists --bootstrap-server kafka:9092 --create --topic order.created.dlq --partitions 1 --replication-factor 1
+
         kafka-topics --if-not-exists --bootstrap-server kafka:9092 --create --topic payment.completed --partitions 1 --replication-factor 1
+
         kafka-topics --if-not-exists --bootstrap-server kafka:9092 --create --topic notification.send --partitions 1 --replication-factor 1
 
     networks:
