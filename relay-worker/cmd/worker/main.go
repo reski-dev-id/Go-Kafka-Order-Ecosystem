@@ -2,8 +2,10 @@ package main
 
 import (
 	"context"
+	"log"
 	"os"
 	"os/signal"
+	"sync"
 	"syscall"
 
 	"relay-worker/config"
@@ -30,7 +32,15 @@ func main() {
 
 	ctx, cancel := context.WithCancel(context.Background())
 
-	go relayWorker.Start(ctx)
+	var wg sync.WaitGroup
+
+	wg.Add(1)
+
+	go func() {
+		defer wg.Done()
+
+		relayWorker.Start(ctx)
+	}()
 
 	stopChan := make(chan os.Signal, 1)
 
@@ -42,5 +52,17 @@ func main() {
 
 	<-stopChan
 
+	log.Println("shutdown signal received")
+
 	cancel()
+
+	log.Println("waiting relay worker to stop")
+
+	wg.Wait()
+
+	log.Println("closing kafka producer")
+
+	producer.Close()
+
+	log.Println("relay worker shutdown complete")
 }

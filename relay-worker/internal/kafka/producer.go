@@ -40,3 +40,7 @@ func (p *Producer) Publish(
 		},
 	)
 }
+
+func (p *Producer) Close() error {
+	return p.writer.Close()
+}

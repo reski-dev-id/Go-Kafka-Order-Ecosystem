@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"errors"
 	"log"
 	"net/http"
 	"os"
@@ -21,11 +22,12 @@ import (
 // @title Order Service API
 // @version 1.0
 // @description Order Service API Documentation
-// @host localhost:8080
+// @host localhost:8081
 // @BasePath /
 func main() {
 
 	app, db, cfg, err := bootstrap.NewApp()
+
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -57,71 +59,138 @@ func main() {
 			orderRepo,
 		)
 
+	consumerCtx, consumerCancel :=
+		context.WithCancel(context.Background())
+
 	go func() {
 
 		for {
 
-			err := consumerGroup.Consume(
-				context.Background(),
-				[]string{"payment.completed"},
-				paymentCompletedConsumer,
-			)
+			select {
 
-			if err != nil {
+			case <-consumerCtx.Done():
+
 				log.Println(
-					"consumer error:",
-					err,
+					"payment consumer stopped",
 				)
+
+				return
+
+			default:
+
+				err := consumerGroup.Consume(
+					consumerCtx,
+					[]string{"payment.completed"},
+					paymentCompletedConsumer,
+				)
+
+				if err != nil {
+
+					if errors.Is(
+						err,
+						context.Canceled,
+					) {
+						return
+					}
+
+					log.Println(
+						"consumer error:",
+						err,
+					)
+
+					time.Sleep(
+						2 * time.Second,
+					)
+				}
 			}
 		}
 	}()
 
 	go func() {
 
+		log.Println(
+			"order service started on port:",
+			cfg.App.Port,
+		)
+
 		err := app.Start(
 			":" + cfg.App.Port,
 		)
 
 		if err != nil &&
-			err != http.ErrServerClosed {
+			!errors.Is(
+				err,
+				http.ErrServerClosed,
+			) {
 
 			app.Logger.Fatal(err)
 		}
 	}()
 
-	quit := make(chan os.Signal, 1)
+	stopChan := make(chan os.Signal, 1)
 
 	signal.Notify(
-		quit,
+		stopChan,
 		syscall.SIGINT,
 		syscall.SIGTERM,
 	)
 
-	<-quit
+	<-stopChan
 
-	log.Println("shutting down server...")
-
-	ctx, cancel := context.WithTimeout(
-		context.Background(),
-		10*time.Second,
+	log.Println(
+		"shutdown signal received",
 	)
+
+	consumerCancel()
+
+	shutdownCtx, cancel :=
+		context.WithTimeout(
+			context.Background(),
+			10*time.Second,
+		)
 
 	defer cancel()
 
-	err = consumerGroup.Close()
+	log.Println(
+		"shutting down http server",
+	)
+
+	err = app.Shutdown(shutdownCtx)
+
 	if err != nil {
+
+		log.Println(
+			"failed shutdown http server:",
+			err,
+		)
+	}
+
+	log.Println(
+		"closing kafka consumer group",
+	)
+
+	err = consumerGroup.Close()
+
+	if err != nil {
+
 		log.Println(
 			"failed close kafka consumer:",
 			err,
 		)
 	}
 
+	log.Println(
+		"closing database connection",
+	)
+
 	sqlDB, err := db.DB()
+
 	if err == nil {
 
 		err = sqlDB.Close()
 
 		if err != nil {
+
 			log.Println(
 				"failed close database:",
 				err,
@@ -129,13 +198,7 @@ func main() {
 		}
 	}
 
-	err = app.Shutdown(ctx)
-	if err != nil {
-		log.Fatal(
-			"server forced shutdown:",
-			err,
-		)
-	}
-
-	log.Println("server exited properly")
+	log.Println(
+		"order service shutdown complete",
+	)
 }
