@@ -1,13 +1,13 @@
-dockerfile
-Idempotent Consumer
+
 Retry + DLQ
 loki
 tempo
-
-internaltesting
-
+gracefull shutdown
 
 
+docker
+    docker compose down -v
+    docker compose up -d
 
 
 make stop-all
