@@ -95,7 +95,20 @@ func (u *orderUsecase) CreateOrder(
 		return nil, err
 	}
 
-	payload, err := json.Marshal(createdOrder)
+	event := dto.OrderCreatedEvent{
+		EventID:      uuid.NewString(),
+		ID:           createdOrder.ID.String(),
+		CustomerName: createdOrder.CustomerName,
+		ProductName:  createdOrder.ProductName,
+		Quantity:     createdOrder.Quantity,
+		Amount:       createdOrder.Amount,
+		Status:       createdOrder.Status,
+		CreatedAt:    createdOrder.CreatedAt.String(),
+		UpdatedAt:    createdOrder.UpdatedAt.String(),
+	}
+
+	payload, err := json.Marshal(event)
+
 	if err != nil {
 		tx.Rollback()
 		return nil, err
@@ -122,6 +135,7 @@ func (u *orderUsecase) CreateOrder(
 	}
 
 	err = tx.Commit().Error
+
 	if err != nil {
 		tx.Rollback()
 		return nil, err
@@ -149,6 +163,7 @@ func (u *orderUsecase) GetOrders(
 	}
 
 	total, err := u.orderRepo.Count(ctx)
+
 	if err != nil {
 		return nil, 0, err
 	}
@@ -162,6 +177,7 @@ func (u *orderUsecase) GetOrderByID(
 ) (*entity.Order, error) {
 
 	orderID, err := uuid.Parse(id)
+
 	if err != nil {
 		return nil, err
 	}
@@ -185,6 +201,7 @@ func (u *orderUsecase) UpdateOrderStatus(
 ) error {
 
 	orderID, err := uuid.Parse(id)
+
 	if err != nil {
 		return err
 	}
@@ -228,6 +245,7 @@ func (u *orderUsecase) UpdateOrderStatus(
 	}
 
 	payload, err := json.Marshal(updatedOrder)
+
 	if err != nil {
 		tx.Rollback()
 		return err
@@ -254,6 +272,7 @@ func (u *orderUsecase) UpdateOrderStatus(
 	}
 
 	err = tx.Commit().Error
+
 	if err != nil {
 		tx.Rollback()
 		return err
@@ -272,6 +291,7 @@ func ParsePagination(
 
 	if pageStr != "" {
 		p, err := strconv.Atoi(pageStr)
+
 		if err == nil && p > 0 {
 			page = p
 		}
@@ -279,6 +299,7 @@ func ParsePagination(
 
 	if limitStr != "" {
 		l, err := strconv.Atoi(limitStr)
+
 		if err == nil && l > 0 {
 			limit = l
 		}

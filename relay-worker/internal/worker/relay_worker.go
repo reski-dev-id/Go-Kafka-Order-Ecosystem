@@ -46,11 +46,13 @@ func (w *RelayWorker) Start(ctx context.Context) {
 
 	ticker := time.NewTicker(5 * time.Second)
 
+	defer ticker.Stop()
+
 	for {
 		select {
 
 		case <-ctx.Done():
-			log.Println("relay worker stopped")
+			log.Println("relay worker stopping gracefully")
 			return
 
 		case <-ticker.C:
@@ -76,6 +78,15 @@ func (w *RelayWorker) processEvents(ctx context.Context) {
 	}
 
 	for _, event := range events {
+
+		select {
+
+		case <-ctx.Done():
+			log.Println("stopping event processing")
+			return
+
+		default:
+		}
 
 		err := w.producer.Publish(
 			ctx,

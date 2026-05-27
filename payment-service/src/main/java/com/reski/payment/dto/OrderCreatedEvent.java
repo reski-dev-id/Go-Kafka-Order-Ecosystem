@@ -6,6 +6,9 @@ import lombok.Data;
 @Data
 public class OrderCreatedEvent {
 
+    @JsonProperty("EventID")
+    private String eventId;
+
     @JsonProperty("ID")
     private String id;
 

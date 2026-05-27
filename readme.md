@@ -35,55 +35,44 @@ This project focuses on:
 - Standardized API response
 - Transactional Outbox Pattern
 - PostgreSQL outbox persistence
+- Relay worker publisher
+- Kafka producer abstraction
+- Payment service Kafka consumer
+- Notification service Kafka consumer
+- Event contract implementation
+- Idempotent consumer handling
+- Processed events tracking
+- Graceful shutdown for all services
 
 ---
 
 ## In Progress
 
-- Relay worker
-- Kafka publisher abstraction
-- Payment service Kafka consumer
-- Notification service Kafka consumer
 - Retry mechanism
-- Idempotent consumer handling
-
----
-
-## Planned
-
-- OpenTelemetry tracing
-- Prometheus metrics
-- Grafana dashboards
-- Loki logging
-- Tempo tracing
 - Dead Letter Queue (DLQ)
-- Kafka retry topics
-- GitHub Actions CI/CD
-- DockerHub deployment
-- Flyway migration management
-- Google Wire dependency injection
-- Distributed tracing propagation
 - Structured logging
+- Retry topics
+- Exponential retry backoff
 
----
+
 
 # Architecture
 
 ```text
 Client
   ↓
-Order Service (Go)
+Order Service (Go + Echo)
   ↓
 PostgreSQL
-(orders + outbox)
+(orders + outbox_events)
   ↓
 Relay Worker (Go)
   ↓
-Kafka
+Apache Kafka
   ↓
 Payment Service (Spring Boot)
   ↓
-Kafka
+payment.completed
   ↓
 Notification Service (FastAPI)
 ```
@@ -224,7 +213,7 @@ payment.completed
 notification.send
 ```
 
-Topics are automatically bootstrapped during container startup.
+Topics are automatically created during infrastructure startup using kafka-init container.
 
 ---
 
@@ -237,6 +226,30 @@ order_db
 payment_db
 notification_db
 ```
+
+---
+
+# Graceful Shutdown
+
+All services implement graceful shutdown handling.
+
+Capabilities:
+
+- Graceful HTTP server shutdown
+- Kafka consumer cleanup
+- Kafka producer cleanup
+- Database connection cleanup
+- Context cancellation
+- Async task cancellation
+- Consumer group leave handling
+- Shutdown timeout handling
+
+Implemented in:
+
+- order-service
+- relay-worker
+- payment-service
+- notification-service
 
 ---
 
@@ -308,12 +321,14 @@ Benefits:
 
 # Relay Worker Flow
 
-The relay worker will:
+The relay worker:
 
-- poll unprocessed outbox events
-- publish events to Kafka
-- mark events as processed
-- retry failed events
+- polls pending outbox events
+- publishes events to Kafka
+- marks events as processed
+- tracks retry count
+- supports graceful shutdown
+- safely closes Kafka producer
 
 Polling query:
 
@@ -474,13 +489,16 @@ http://localhost:8080
 
 This project currently emphasizes:
 
-- Reliable event publishing
-- Async processing
-- Transaction consistency
-- Modular architecture
+- Event-driven architecture
+- Transactional consistency
+- Reliable async messaging
+- Idempotent event consumption
+- Graceful shutdown handling
 - Distributed backend communication
-- Production-style infrastructure
+- Modular clean architecture
 - Polyglot microservices
+- Production-oriented infrastructure
+- Fault-tolerant backend engineering
 
 ---
 
@@ -488,7 +506,7 @@ This project currently emphasizes:
 
 Future production-grade capabilities:
 
-- Dead Letter Queue
+- Dead Letter Queue (DLQ)
 - Retry topics
 - Exponential retry backoff
 - Distributed tracing
@@ -496,23 +514,35 @@ Future production-grade capabilities:
 - Structured logging
 - Correlation IDs
 - OpenTelemetry instrumentation
+- Prometheus metrics
+- Grafana dashboards
+- Loki centralized logging
 - Health checks
-- Graceful shutdown
+- Kubernetes deployment
 - CI/CD automation
 - DockerHub deployment
-- Observability stack
 
 ---
 
-# Final Goal
+# Reliability Features
 
-A production-style distributed backend ecosystem demonstrating:
+Implemented reliability mechanisms:
 
-- Event-driven microservices
 - Transactional Outbox Pattern
-- Clean Architecture
-- Kafka streaming
-- Polyglot services
-- Distributed systems engineering
-- Containerized infrastructure
-- Production-oriented backend practices
+- Idempotent consumers
+- Processed event tracking
+- Graceful shutdown lifecycle
+- Kafka consumer group cleanup
+- Safe producer shutdown
+- Async task cancellation
+- Database transaction consistency
+
+Planned reliability mechanisms:
+
+- Dead Letter Queue (DLQ)
+- Retry topics
+- Exponential backoff retry
+- Circuit breaker pattern
+- Distributed tracing
+
+---
