@@ -10,13 +10,18 @@ import com.reski.payment.repository.ProcessedEventRepository;
 
 import lombok.RequiredArgsConstructor;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import java.time.Instant;
 import java.util.UUID;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class OrderCreatedConsumer {
@@ -29,11 +34,17 @@ public class OrderCreatedConsumer {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
+    @Transactional
     @KafkaListener(
             topics = "order.created",
             groupId = "payment-group"
     )
     public void consume(String message) throws Exception {
+
+        log.info(
+                "received kafka message: {}",
+                message
+        );
 
         OrderCreatedEvent event =
                 objectMapper.readValue(
@@ -50,9 +61,9 @@ public class OrderCreatedConsumer {
 
         if (alreadyProcessed) {
 
-            System.out.println(
-                    "duplicate event skipped: "
-                            + event.getEventId()
+            log.warn(
+                    "duplicate event skipped: {}",
+                    event.getEventId()
             );
 
             return;
@@ -96,9 +107,9 @@ public class OrderCreatedConsumer {
                 objectMapper.writeValueAsString(completedEvent)
         );
 
-        System.out.println(
-                "payment completed published for order: "
-                        + event.getId()
+        log.info(
+                "payment completed published for order: {}",
+                event.getId()
         );
     }
 }
