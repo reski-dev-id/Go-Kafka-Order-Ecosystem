@@ -4,7 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reski.payment.dto.OrderCreatedEvent;
 import com.reski.payment.dto.PaymentCompletedEvent;
 import com.reski.payment.entity.Payment;
+import com.reski.payment.entity.ProcessedEvent;
 import com.reski.payment.repository.PaymentRepository;
+import com.reski.payment.repository.ProcessedEventRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,6 +22,8 @@ import java.util.UUID;
 public class OrderCreatedConsumer {
 
     private final PaymentRepository paymentRepository;
+
+    private final ProcessedEventRepository processedEventRepository;
 
     private final ObjectMapper objectMapper;
 
@@ -37,6 +41,23 @@ public class OrderCreatedConsumer {
                         OrderCreatedEvent.class
                 );
 
+        boolean alreadyProcessed =
+                processedEventRepository
+                        .existsByEventIdAndConsumerGroup(
+                                event.getEventId(),
+                                "payment-service"
+                        );
+
+        if (alreadyProcessed) {
+
+            System.out.println(
+                    "duplicate event skipped: "
+                            + event.getEventId()
+            );
+
+            return;
+        }
+
         Payment payment = Payment.builder()
                 .id(UUID.randomUUID())
                 .orderId(UUID.fromString(event.getId()))
@@ -46,6 +67,21 @@ public class OrderCreatedConsumer {
                 .build();
 
         paymentRepository.save(payment);
+
+        ProcessedEvent processedEvent =
+                new ProcessedEvent();
+
+        processedEvent.setEventId(
+                event.getEventId()
+        );
+
+        processedEvent.setConsumerGroup(
+                "payment-service"
+        );
+
+        processedEventRepository.save(
+                processedEvent
+        );
 
         PaymentCompletedEvent completedEvent =
                 PaymentCompletedEvent.builder()

@@ -2,6 +2,7 @@ package database
 
 import (
 	"fmt"
+	"order-service/features/order/entity"
 	"order-service/internal/config"
 
 	"gorm.io/driver/postgres"
@@ -9,6 +10,7 @@ import (
 )
 
 func NewPostgresConnection(cfg *config.Config) (*gorm.DB, error) {
+
 	dsn := fmt.Sprintf(
 		"host=%s port=%d user=%s password=%s dbname=%s sslmode=%s",
 		cfg.Database.Host,
@@ -19,7 +21,20 @@ func NewPostgresConnection(cfg *config.Config) (*gorm.DB, error) {
 		cfg.Database.SSLMode,
 	)
 
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open(
+		postgres.Open(dsn),
+		&gorm.Config{},
+	)
+
+	if err != nil {
+		return nil, err
+	}
+
+	err = db.AutoMigrate(
+		&entity.Order{},
+		&entity.OutboxEvent{},
+	)
+
 	if err != nil {
 		return nil, err
 	}
