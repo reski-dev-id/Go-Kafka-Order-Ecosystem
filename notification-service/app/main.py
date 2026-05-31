@@ -5,6 +5,10 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
+from prometheus_fastapi_instrumentator import (
+    Instrumentator,
+)
+
 from app.database.database import engine
 from app.database.database import Base
 
@@ -68,6 +72,12 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     lifespan=lifespan
+)
+
+Instrumentator().instrument(
+    app
+).expose(
+    app
 )
 
 

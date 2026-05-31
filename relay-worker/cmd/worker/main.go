@@ -11,10 +11,13 @@ import (
 	"relay-worker/config"
 	"relay-worker/internal/database"
 	"relay-worker/internal/kafka"
+	"relay-worker/internal/metrics"
 	"relay-worker/internal/worker"
 )
 
 func main() {
+
+	metrics.Init()
 
 	cfg := config.LoadConfig()
 
@@ -62,7 +65,14 @@ func main() {
 
 	log.Println("closing kafka producer")
 
-	producer.Close()
+	err := producer.Close()
+
+	if err != nil {
+		log.Printf(
+			"failed close producer: %v",
+			err,
+		)
+	}
 
 	log.Println("relay worker shutdown complete")
 }

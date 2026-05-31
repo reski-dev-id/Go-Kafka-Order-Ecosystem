@@ -15,6 +15,7 @@ import (
 	"order-service/features/order/consumer"
 	"order-service/features/order/repository"
 	"order-service/internal/bootstrap"
+	"order-service/internal/metrics"
 
 	"github.com/IBM/sarama"
 )
@@ -25,6 +26,8 @@ import (
 // @host localhost:8081
 // @BasePath /
 func main() {
+
+	metrics.Init()
 
 	app, db, cfg, err := bootstrap.NewApp()
 
