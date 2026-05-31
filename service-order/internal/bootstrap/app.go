@@ -10,17 +10,23 @@ import (
 	customMiddleware "order-service/internal/middleware"
 	customValidator "order-service/internal/pkg/validator"
 
+	"github.com/labstack/echo-contrib/prometheus"
+
 	"github.com/labstack/echo/v4"
+
 	"gorm.io/gorm"
 )
 
 func NewApp() (*echo.Echo, *gorm.DB, *config.Config, error) {
+
 	cfg, err := config.LoadConfig()
+
 	if err != nil {
 		return nil, nil, nil, err
 	}
 
 	db, err := database.NewPostgresConnection(cfg)
+
 	if err != nil {
 		return nil, nil, nil, err
 	}
@@ -38,9 +44,17 @@ func NewApp() (*echo.Echo, *gorm.DB, *config.Config, error) {
 
 	e := echo.New()
 
+	p := prometheus.NewPrometheus(
+		"echo",
+		nil,
+	)
+
+	p.SetMetricsPath(e)
+
 	e.Validator = customValidator.NewValidator()
 
-	e.HTTPErrorHandler = customMiddleware.CustomErrorHandler
+	e.HTTPErrorHandler =
+		customMiddleware.CustomErrorHandler
 
 	e.Use(customMiddleware.RequestLogger)
 

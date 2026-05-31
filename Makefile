@@ -10,7 +10,10 @@ run-payment:
 run-notification:
 	cd notification-service && \
 	source venv/bin/activate && \
-	uvicorn app.main:app --reload --port 8083
+	uvicorn app.main:app \
+		--host 0.0.0.0 \
+		--port 8083 \
+		--reload
 
 run-all:
 	@echo "starting order-service..."
@@ -30,7 +33,7 @@ run-all:
 
 	@echo "starting notification-service..."
 	cd notification-service && \
-	nohup bash -c 'source venv/bin/activate && uvicorn app.main:app --port 8083' \
+	nohup bash -c 'source venv/bin/activate && uvicorn app.main:app --host 0.0.0.0 --port 8083' \
 	> ../notification-service.log 2>&1 &
 
 	@echo "all services started"
