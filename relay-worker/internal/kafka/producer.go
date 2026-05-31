@@ -3,6 +3,8 @@ package kafka
 import (
 	"context"
 
+	"relay-worker/internal/metrics"
+
 	kafkago "github.com/segmentio/kafka-go"
 )
 
@@ -32,13 +34,22 @@ func (p *Producer) Publish(
 	value []byte,
 ) error {
 
-	return p.writer.WriteMessages(
+	err := p.writer.WriteMessages(
 		ctx,
 		kafkago.Message{
 			Key:   []byte(key),
 			Value: value,
 		},
 	)
+
+	if err != nil {
+		metrics.KafkaMessagesFailedTotal.Inc()
+		return err
+	}
+
+	metrics.KafkaMessagesPublishedTotal.Inc()
+
+	return nil
 }
 
 func (p *Producer) Close() error {

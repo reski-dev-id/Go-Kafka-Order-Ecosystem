@@ -46,14 +46,9 @@ This project focuses on:
 
 ---
 
-## In Progress
-
-- Retry mechanism
-- Dead Letter Queue (DLQ)
-- Structured logging
-- Retry topics
-- Exponential retry backoff
-
+## Doc
+📸 Screenshots:
+https://github.com/reski-dev-id/Go-Kafka-Order-Ecosystem/tree/master/documentasi/screenshoot
 
 
 # Architecture
@@ -81,20 +76,32 @@ Notification Service (FastAPI)
 
 # Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Order Service | Go 1.22 |
-| HTTP Framework | Echo |
-| Relay Worker | Go |
-| Payment Service | Spring Boot |
-| Notification Service | FastAPI |
-| Database | PostgreSQL 16 |
-| SQL Library | sqlx |
-| Message Broker | Apache Kafka |
-| Kafka UI | Provectus Kafka UI |
-| Containerization | Docker + Docker Compose |
-| Architecture | Clean Architecture |
-| Dependency Injection | Manual DI (planned Wire) |
+| Layer                 | Technology                   |
+| --------------------- | ---------------------------- |
+| Order Service         | Go 1.24                      |
+| HTTP Framework        | Echo                         |
+| Relay Worker          | Go 1.24                      |
+| Payment Service       | Spring Boot 3                |
+| Notification Service  | FastAPI                      |
+| Database              | PostgreSQL 16                |
+| ORM                   | GORM                         |
+| Message Broker        | Apache Kafka                 |
+| Kafka Client (Go)     | Sarama                       |
+| Kafka Client (Java)   | Spring Kafka                 |
+| Kafka Client (Python) | aiokafka                     |
+| API Documentation     | Swagger / OpenAPI            |
+| Monitoring            | Prometheus                   |
+| Visualization         | Grafana                      |
+| Kafka UI              | Provectus Kafka UI           |
+| Containerization      | Docker                       |
+| Orchestration         | Docker Compose               |
+| Architecture          | Clean Architecture           |
+| Messaging Pattern     | Event-Driven Architecture    |
+| Reliability Pattern   | Transactional Outbox Pattern |
+| Consumer Reliability  | Idempotent Consumer          |
+| Dependency Injection  | Manual Dependency Injection  |
+| CI/CD                 | GitHub Actions               |
+| Artifact Registry     | DockerHub                    |
 
 ---
 
@@ -197,13 +204,39 @@ go-kafka-order-ecosystem/
 
 Current infrastructure:
 
-- PostgreSQL 16
-- Apache Kafka
-- Zookeeper
-- Kafka UI
-- Docker Compose
+* PostgreSQL 16
+* Apache Kafka
+* Zookeeper
+* Kafka UI
+* Prometheus
+* Grafana
+* Docker Compose
+
+Infrastructure capabilities:
+
+* Multi-database bootstrap
+* Kafka topic auto creation
+* Event-driven communication
+* Metrics collection
+* Service monitoring
+* Dashboard visualization
+* Containerized local development
+* Health monitoring
+
+Infrastructure services:
+
+| Service        | Purpose                |
+| -------------- | ---------------------- |
+| PostgreSQL     | Persistent storage     |
+| Kafka          | Event streaming        |
+| Zookeeper      | Kafka coordination     |
+| Kafka UI       | Kafka topic inspection |
+| Prometheus     | Metrics collection     |
+| Grafana        | Metrics visualization  |
+| Docker Compose | Local orchestration    |
 
 ---
+
 
 # Kafka Topics
 
@@ -365,72 +398,25 @@ Example event payload:
 
 # Docker Compose Infrastructure
 
+
+# Docker Compose Infrastructure
+
+The entire ecosystem can be started locally using a single Docker Compose configuration.
+
 Services included:
 
-- PostgreSQL
-- Kafka
-- Zookeeper
-- Kafka UI
-- Kafka topic bootstrap
+* PostgreSQL 16
+* Apache Kafka
+* Zookeeper
+* Kafka UI
+* Kafka Topic Bootstrap
+* Prometheus
+* Grafana
+
 
 ---
 
 # Make Commands
-
-## Start Infrastructure
-
-```bash
-make infra-up
-```
-
----
-
-## Stop Infrastructure
-
-```bash
-make infra-down
-```
-
----
-
-## Reset Infrastructure
-
-```bash
-make infra-reset
-```
-
----
-
-## Run Order Service
-
-```bash
-make run-order
-```
-
----
-
-## Run Relay Worker
-
-```bash
-make run-relay
-```
-
----
-
-## Run Payment Service
-
-```bash
-make run-payment
-```
-
----
-
-## Run Notification Service
-
-```bash
-make run-notification
-```
-
 ---
 
 ## Run All Services
@@ -474,8 +460,9 @@ docker compose down -v
 ```
 
 ---
+# Monitoring & Observability
 
-# Kafka UI
+## Kafka UI
 
 Available at:
 
@@ -483,7 +470,53 @@ Available at:
 http://localhost:8080
 ```
 
+Used for:
+
+* Topic inspection
+* Message monitoring
+* Consumer group monitoring
+
 ---
+
+## Prometheus
+
+Available at:
+
+```text
+http://localhost:9090
+```
+
+Used for:
+
+* Metrics collection
+* Service monitoring
+* PromQL queries
+
+---
+
+## Grafana
+
+Available at:
+
+```text
+http://localhost:3000
+```
+
+Default credentials:
+
+```text
+username: admin
+password: admin
+```
+
+Used for:
+
+* Dashboard visualization
+* Metrics monitoring
+* Infrastructure observability
+
+---
+
 
 # Current Engineering Focus
 
@@ -502,27 +535,6 @@ This project currently emphasizes:
 
 ---
 
-# Planned Production Features
-
-Future production-grade capabilities:
-
-- Dead Letter Queue (DLQ)
-- Retry topics
-- Exponential retry backoff
-- Distributed tracing
-- Metrics aggregation
-- Structured logging
-- Correlation IDs
-- OpenTelemetry instrumentation
-- Prometheus metrics
-- Grafana dashboards
-- Loki centralized logging
-- Health checks
-- Kubernetes deployment
-- CI/CD automation
-- DockerHub deployment
-
----
 
 # Reliability Features
 
@@ -536,13 +548,3 @@ Implemented reliability mechanisms:
 - Safe producer shutdown
 - Async task cancellation
 - Database transaction consistency
-
-Planned reliability mechanisms:
-
-- Dead Letter Queue (DLQ)
-- Retry topics
-- Exponential backoff retry
-- Circuit breaker pattern
-- Distributed tracing
-
----
